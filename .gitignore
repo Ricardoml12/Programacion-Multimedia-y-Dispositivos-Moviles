@@ -1,0 +1,68 @@
+# Built application files
+**/*.apk
+**/*.ap_
+**/*.aab
+
+# Files for the ART/Dalvik VM
+**/*.dex
+
+# Java class files
+**/*.class
+
+# Generated files
+**/bin/
+**/gen/
+**/out/
+**/build/
+**/captures/
+
+# Gradle files
+**/.gradle/
+**/build/
+**/build/
+
+# Local configuration file (SDK path, etc)
+**/local.properties
+
+# Log files
+**/*.log
+
+# Android Studio Navigation editor temp files
+**/.navigation/
+
+# Android Studio captures
+**/captures/
+
+# IntelliJ/Android Studio specific
+**/.idea/
+**/*.iml
+**/*.ipr
+**/*.iws
+
+# Keystore files (security risk!)
+**/*.jks
+**/*.keystore
+
+# NDK
+**/obj/
+
+# Misc
+**/*.swp
+**/*.swo
+
+# Mac OS files
+**/.DS_Store
+
+# Windows thumbnail cache
+**/Thumbs.db
+
+# Firebase crashlytics / performance plugin (optional)
+**/crashlytics.properties
+**/firebase-analytics.properties
+**/performance.properties
+
+# Kotlin
+**/*.kotlin_module
+
+# Proguard mapping files (optional)
+**/mapping.txt
