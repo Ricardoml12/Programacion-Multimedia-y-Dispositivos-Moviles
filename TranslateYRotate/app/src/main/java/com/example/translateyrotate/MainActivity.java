@@ -1,10 +1,11 @@
-package com.example.tema4;
+package com.example.translateyrotate;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onStart() {
         super.onStart();
+        //Button boton1 = findViewById(R.id.button1);
         TextView miTexto = (TextView) findViewById(R.id.texto);
         miTexto.setText("Nuevo texto a mostrar");
         miTexto.setTextColor(Color.parseColor("#0000FF"));
@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
         miTexto.setTextSize(24);
         miTexto.setTypeface(Typeface.SANS_SERIF);
 
-        Animation miAnimacion = AnimationUtils.loadAnimation(this,R.anim.rotate);
+        Animation miAnimacion = AnimationUtils.loadAnimation(this,R.anim.rotar
+        );
         miAnimacion.setRepeatMode(Animation.RESTART);
         miAnimacion.setRepeatCount(20);
         miTexto.startAnimation(miAnimacion);
