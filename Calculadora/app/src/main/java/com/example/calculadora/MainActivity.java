@@ -15,31 +15,107 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Texto de Operación
+     */
     TextView miTexto;
+    /**
+     * Boton número 1
+     */
     Button boton1;
+    /**
+     * Boton número 2
+     */
     Button boton2;
+    /**
+     * Boton número 3
+     */
     Button boton3;
+    /**
+     * Boton operador dividir
+     */
     Button botonDividir;
+    /**
+     * Boton número 4
+     */
     Button boton4;
+    /**
+     * Boton número 5
+     */
     Button boton5;
+    /**
+     * Boton número 6
+     */
     Button boton6;
+    /**
+     * Boton operador multiplicar
+     */
     Button botonMultiplicar;
+    /**
+     * Boton número 7
+     */
     Button boton7;
+    /**
+     * Boton número 8
+     */
     Button boton8;
+    /**
+     * Boton número 9
+     */
     Button boton9;
+    /**
+     * Boton operador resta
+     */
     Button botonMenos;
+    /**
+     * Boton borrar 1 número
+     */
     Button botonBorrar;
+    /**
+     * Boton numero 0
+     */
     Button boton0;
+    /**
+     * Boton operador igual
+     */
     Button botonIgual;
+    /**
+     * Boton operador sumar
+     */
     Button botonSumar;
+    /**
+     * Boton borrar todo el numero
+     */
     Button botonC;
+    /**
+     * Boton borrar todos los numeros
+     */
     Button botonAC;
+    /**
+     * Boton coma
+     */
     Button botonComa;
 
+    /**
+     * Primero numero
+     */
     float num1;
+    /**
+     * Segundo numero
+     */
     float num2;
-    String operador;
+    /**
+     * Operacion
+     */
+    String operador = "";
 
+    /**
+     * Crea la aplicación
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,8 +124,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Ejecuta la aplicación
+     */
     protected void onStart() {
         super.onStart();
+        /**
+         * Inicializo todas las variables de los botones
+         */
         boton1 = findViewById(R.id.button1);
         boton2 = findViewById(R.id.button2);
         boton3 = findViewById(R.id.button3);
@@ -72,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
 
         miTexto = (TextView) findViewById(R.id.texto);
 
+        /**
+         * Escribe "1" al clickar en el boton
+         */
         boton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,6 +165,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "2" al clickar en el boton
+         */
         boton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "3" al clickar en el boton
+         */
         boton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +187,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "4" al clickar en el boton
+         */
         boton4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,6 +198,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "5" al clickar en el boton
+         */
         boton5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +209,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "6" al clickar en el boton
+         */
         boton6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,6 +220,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "7" al clickar en el boton
+         */
         boton7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,6 +231,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "8" al clickar en el boton
+         */
         boton8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +242,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "9" al clickar en el boton
+         */
         boton9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +253,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Escribe "0" al clickar en el boton comprobando que a la izquierda
+         * del todo del numero no se pueda escribir 0
+         */
         boton0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,6 +267,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Guarda en las variables num1 y operador el primer numero y el operador "+"
+         */
         botonSumar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,6 +279,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Guarda en las variables num1 y operador el primer numero y el operador "-"
+         */
         botonMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,6 +291,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Guarda en las variables num1 y operador el primer numero y el operador "*"
+         */
         botonMultiplicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,6 +303,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Guarda en las variables num1 y operador el primer numero y el operador "/"
+         */
         botonDividir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,6 +315,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Obtiene el segundo numero y dependiendo del operador seleccionado hace la
+         * operacion correspondiente poniendo en el texto el resultado
+         */
         botonIgual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -208,12 +337,17 @@ public class MainActivity extends AppCompatActivity {
                     case "/":
                         resultado = num1 / num2;
                         break;
+                    case "":
+                        break;
                 }
                 String i = String.valueOf(resultado);
                 miTexto.setText(i);
             }
         });
 
+        /**
+         * Borra el carácter más a la derecha del número
+         */
         botonBorrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -225,6 +359,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Elimina solo el número visto en pantalla
+         */
         botonC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -232,6 +369,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Elimina tanto el operador como ambos números
+         */
         botonAC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -242,6 +382,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * Pone un "." en el número comprobando si hay números a la izquierda y en caso que
+         * no los haya escribiendo "0."
+         */
         botonComa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
