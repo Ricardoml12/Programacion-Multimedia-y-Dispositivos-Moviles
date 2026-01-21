@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="Settings"></item>
+    <item
+        android:id="@+id/action_help"
+        android:title="HELP"></item>
+    <item
+        android:id="@+id/exit"
+        android:title="Me fui"></item>
+    <item
+        android:id="@+id/action_mas"
+        android:title="Submenu Duro">
+        <menu>
+            <item
+                android:id="@+id/action_info"
+                android:title="Informacion"></item>
+            <item
+                android:id="@+id/action_acercade"
+                android:title="Acerca de"></item>
+        </menu>
+    </item>
+</menu>

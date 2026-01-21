@@ -1,0 +1,37 @@
+package com.example.tema5_baseadapter;
+
+import android.os.Bundle;
+import android.widget.ListView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    private ListView listView;
+    private CustomAdapter adapter;
+    private List<ListItem> items;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        listView = findViewById(R.id.listView);
+
+        items = new ArrayList<>();
+        items.add(new ListItem(R.drawable.ic_launcher_foreground, "Título 1", "Contenido del elemento 1"));
+        items.add(new ListItem(R.drawable.ic_launcher_foreground, "Título 2", "Contenido del elemento 2"));
+        items.add(new ListItem(R.drawable.ic_launcher_foreground, "Título 3", "Contenido del elemento 3"));
+        items.add(new ListItem(R.drawable.ic_launcher_foreground, "Título 4", "Contenido del elemento 4"));
+
+        adapter = new CustomAdapter(this, items);
+        listView.setAdapter(adapter);
+    }
+}

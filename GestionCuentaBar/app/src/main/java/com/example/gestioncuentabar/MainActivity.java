@@ -16,11 +16,7 @@ import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,24 +31,26 @@ public class MainActivity extends AppCompatActivity {
 
     private int porcentajePropina = 10;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText etTotalCuenta = findViewById(R.id.etTotalCuenta);
-        CheckBox cbPropina = findViewById(R.id.cbPropina);
-        SeekBar sbPropina = findViewById(R.id.sbPropina);
-        TextView tvPorcentaje = findViewById(R.id.tvPorcentaje);
-        RadioGroup rgPago = findViewById(R.id.rgPago);
-        RatingBar ratingBar = findViewById(R.id.ratingBar);
-        Button btnCalcular = findViewById(R.id.btnCalcular);
-        TextView tvResultado = findViewById(R.id.tvResultado);
-        AutoCompleteTextView actvCamarero = findViewById(R.id.actvCamarero);
+        etTotalCuenta = findViewById(R.id.etTotalCuenta);
+        cbPropina = findViewById(R.id.cbPropina);
+        sbPropina = findViewById(R.id.sbPropina);
+        tvPorcentaje = findViewById(R.id.tvPorcentaje);
+        rgPago = findViewById(R.id.rgPago);
+        ratingBar = findViewById(R.id.ratingBar);
+        btnCalcular = findViewById(R.id.btnCalcular);
+        tvResultado = findViewById(R.id.tvResultado);
+        actvCamarero = findViewById(R.id.actvCamarero);
 
         String[] camareros = {"Ana", "Andrés", "Beatriz", "Carlos", "Clara", "David"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, camareros);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_dropdown_item_1line, camareros);
         actvCamarero.setAdapter(adapter);
-        actvCamarero.setThreshold(3);
+        actvCamarero.setThreshold(1);
 
         sbPropina.setProgress(porcentajePropina);
         tvPorcentaje.setText("Propina: " + porcentajePropina + "%");
@@ -64,36 +62,28 @@ public class MainActivity extends AppCompatActivity {
                 tvPorcentaje.setText("Propina: " + porcentajePropina + "%");
             }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
-        btnCalcular.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calcularTotal();
-            }
-        });
+        btnCalcular.setOnClickListener(v -> calcularTotal());
 
         etTotalCuenta.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!s.toString().matches("^\\d*\\.?\\d*$")) {
                     etTotalCuenta.setError("Solo se permiten números y punto decimal");
                 }
             }
-            @Override
-            public void afterTextChanged(Editable s) {}
+            @Override public void afterTextChanged(Editable s) {}
         });
     }
 
     private void calcularTotal() {
+
         String totalStr = etTotalCuenta.getText().toString().trim();
-        tvResultado.setTextColor(Color.BLACK); // color normal
+        tvResultado.setTextColor(Color.BLACK);
 
         if (totalStr.isEmpty()) {
             tvResultado.setTextColor(Color.RED);
@@ -116,38 +106,26 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        double propina = 0;
-        if (cbPropina.isChecked()) {
-            propina = total * porcentajePropina / 100.0;
-        }
-
+        double propina = cbPropina.isChecked() ? total * porcentajePropina / 100.0 : 0;
         double totalFinal = total + propina;
 
         int selectedId = rgPago.getCheckedRadioButtonId();
-        String metodoPago = "";
-        if (selectedId != -1) {
-            RadioButton rbSeleccionado = findViewById(selectedId);
-            metodoPago = rbSeleccionado.getText().toString();
-        } else {
-            metodoPago = "No seleccionado";
-        }
+        String metodoPago = (selectedId != -1) ?
+                ((RadioButton) findViewById(selectedId)).getText().toString() :
+                "No seleccionado";
 
-        // Calificación
         float calificacion = ratingBar.getRating();
-
-        // Camarero
         String camarero = actvCamarero.getText().toString();
 
-        String resultado = "Total base: " + String.format("%.2f", total) + " €";
-        if (cbPropina.isChecked()) {
-            resultado += "Propina (" + porcentajePropina + "%): " + String.format("%.2f", propina) + " €";
-        }
-        resultado += "TOTAL A PAGAR: " + String.format("%.2f", totalFinal) + " €";
-        resultado += "Método de pago: " + metodoPago;
-        resultado += "Camarero: " + (camarero.isEmpty() ? "No especificado" : camarero);
-        resultado += " Calificación del servicio: " + calificacion + " estrellas";
+        String resultado =
+                "Total base: " + String.format("%.2f", total) + " €\n" +
+                        (cbPropina.isChecked() ? "Propina (" + porcentajePropina + "%): " +
+                                String.format("%.2f", propina) + " €\n" : "") +
+                        "TOTAL A PAGAR: " + String.format("%.2f", totalFinal) + " €\n\n" +
+                        "Método de pago: " + metodoPago + "\n" +
+                        "Camarero: " + (camarero.isEmpty() ? "No especificado" : camarero) + "\n" +
+                        "Calificación del servicio: " + calificacion + " estrellas";
 
         tvResultado.setText(resultado);
     }
-}
 }
