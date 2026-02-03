@@ -2,11 +2,7 @@ package com.example.practica5;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +32,29 @@ public class MainActivity extends AppCompatActivity {
             tabLayout.getTabAt(i).setIcon(adapter.getIcon(i));
         }
 
+        fab.setImageResource(R.drawable.ic_form);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        fab.setImageResource(R.drawable.ic_form);
+                        break;
+                    case 1:
+                        fab.setImageResource(R.drawable.ic_calc);
+                        break;
+                    case 2:
+                        fab.setImageResource(R.drawable.ic_bar);
+                        break;
+                }
+            }
+
+            @Override public void onTabUnselected(TabLayout.Tab tab) {}
+            @Override public void onTabReselected(TabLayout.Tab tab) {}
+        });
+
+        // Acción del FAB → Snackbar
         fab.setOnClickListener(view ->
                 Snackbar.make(view, "Acción confirmada", Snackbar.LENGTH_LONG)
                         .setAction("OK", v -> {})
